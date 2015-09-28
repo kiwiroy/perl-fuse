@@ -1,9 +1,10 @@
-#!/usr/bin/perl
+use strict;
+use warnings;
 use test::helper qw($_real $_point);
 use Test::More;
-plan tests => 3;
+
 chdir($_real);
-open($file, '>','file');
+open(my $file, '>','file');
 print $file "frog\n";
 close($file);
 chdir($_point);
@@ -13,3 +14,5 @@ close(FILE);
 is(length($data),5,"right amount read");
 is($data,"frog\n","right data read");
 unlink("file");
+
+done_testing();

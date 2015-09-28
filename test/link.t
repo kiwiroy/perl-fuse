@@ -1,9 +1,10 @@
-#!/usr/bin/perl
+use strict;
+use warnings;
 use test::helper qw($_real $_point);
 use Test::More;
-plan tests => 8;
+
 chdir($_point);
-open($file, '>', 'womble');
+open(my $file, '>', 'womble');
 print $file "hippity\n";
 close($file);
 ok(-f "womble","exists");
@@ -16,3 +17,5 @@ is(-s "womble",8,"right size");
 is(-s "rabbit",8,"right size");
 unlink("womble");
 unlink("rabbit");
+
+done_testing();

@@ -1,5 +1,6 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 use strict;
+use warnings;
 
 use Data::Dumper;
 
@@ -70,9 +71,9 @@ sub e_open {
     print("open called $file, $flags, $fileinfo\n");
 	return -ENOENT() unless exists($files{$file});
 	return -EISDIR() if $files{$file}{type} & 0040;
-    
+
     my $fh = [ rand() ];
-    
+
     print("open ok (handle $fh)\n");
     return (0, $fh);
 }

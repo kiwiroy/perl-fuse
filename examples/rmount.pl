@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/opt/local/bin/perl -w
 
 # This example needs some work before it can support threads.
 use strict;

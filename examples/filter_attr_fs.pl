@@ -1,10 +1,11 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 # filter_attr_t.pl
 # Loopback fs that shows only files with a particular xattr
 
 # (c) Reuben Thomas  29/11/2007-5/1/2008, based on example code from Fuse package
 
 use strict;
+use warnings;
 #use blib;
 
 use Fuse;

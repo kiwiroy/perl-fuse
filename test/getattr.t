@@ -1,9 +1,10 @@
-#!/usr/bin/perl
+use strict;
+use warnings;
 use test::helper qw($_real $_point);
 use Test::More;
 use Data::Dumper;
-plan tests => 203;
-$scale = 1024 * 1024 * 1024;
+
+my $scale = 1024 * 1024 * 1024;
 if ($^O eq 'darwin') {
 	$scale = 1024 * 1024;
 }
@@ -52,4 +53,7 @@ sub test_file {
 	is(join(" ",@astat),join(" ",@bstat),"stat()");
 	ok( unlink($a), 'unlink' );
 }
+
 test_file( $_ ) foreach ( 1, 2, 4, 8, 16, 32, 64 );
+
+done_testing();

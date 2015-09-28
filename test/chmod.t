@@ -1,13 +1,30 @@
-#!/usr/bin/perl
+
+use strict;
+use warnings;
 use test::helper qw($_real $_point);
 use Test::More;
-plan tests => 4;
-chdir($_point);
-open($file, '>', 'file');
+
+$| = 1;
+
+ok(chdir($_point), 'changed directory');
+
+my $filename = 'file-to-chmod';
+
+open(my $file, '>', $filename);
 print $file "frog\n";
 close($file);
-ok(chmod(0644,"file"),"set unexecutable");
-ok(!-x "file","unexecutable");
-ok(chmod(0755,"file"),"set executable");
-ok(-x "file","executable");
-unlink("file");
+sleep(1);
+
+my $sixfourfour = chmod 0644, $filename;
+ok($sixfourfour, "set unexecutable");
+ok((! -x $filename), "$filename is not executable");
+
+sleep(1);
+my $sevenfivefive = chmod 0755, $filename;
+ok($sevenfivefive, "set executable");
+ok((-x $filename),"executable");
+sleep(1);
+
+ok(unlink($filename), "removed $filename");
+
+done_testing();

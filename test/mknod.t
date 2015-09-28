@@ -1,7 +1,7 @@
-#!/usr/bin/perl
+use strict;
+use warnings;
 use test::helper qw($_real $_point);
 use Test::More;
-plan tests => 24;
 use English;
 use Unix::Mknod qw(:all);
 use Fcntl qw(S_IFCHR S_IFBLK);
@@ -10,7 +10,7 @@ use POSIX;
 my (@stat);
 
 chdir($_point);
-ok(open($file, '>', 'reg'),"create normal file");
+ok(open(my $file, '>', 'reg'),"create normal file");
 close($file);
 ok(defined mkfifo($_point.'/fifo', 0600),"create fifo");
 
@@ -30,7 +30,7 @@ SKIP: {
 	chdir($_real);
 	ok(-e "chr" ,"chrdev exists");
 	ok(-e "blk" ,"blkdev exists");
-        
+
         skip('mknod() is just pretend under fakeroot(1)', 4)
           if exists $ENV{FAKEROOTKEY};
 
@@ -64,3 +64,5 @@ SKIP: {
 }
 
 map { unlink } qw(reg chr blk fifo);
+
+done_testing();

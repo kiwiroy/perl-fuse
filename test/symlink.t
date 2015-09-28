@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/opt/local/bin/perl
 use test::helper qw($_point $_real);
 use Test::More;
 plan tests => 6;

@@ -1,6 +1,7 @@
-#!/usr/bin/perl -w
+
 use test::helper qw($_point $_loop $_opts $_real $_pidfile);
 use strict;
+use warnings;
 use Errno qw(:POSIX);
 use Test::More tests => 3;
 
@@ -20,6 +21,7 @@ open REALSTDOUT, '>&STDOUT';
 open REALSTDERR, '>&STDERR';
 open STDOUT, '>', '/dev/null';
 open STDERR, '>&', \*STDOUT;
+diag "$_loop $_opts $_point";
 system("perl -Iblib/lib -Iblib/arch $_loop $_opts $_point");
 open STDOUT, '>&', \*REALSTDOUT;
 open STDERR, '>&', \*REALSTDERR;
